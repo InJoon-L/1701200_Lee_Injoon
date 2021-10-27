@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmdfhrController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,3 +28,14 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+Route::get('/emdfhr', [EmdfhrController::class, 'index'])->name('emdfhr');
+Route::get('/list', [EmdfhrController::class, 'list'])->name('list');
+Route::post('/emdfhr', [EmdfhrController::class, 'create']);
+Route::get('/emdfhr/show/{id}', [EmdfhrController::class, 'show'])->name('show');
+Route::post('/emdfhr/edit/{id}', [EmdfhrController::class, 'edit']);
+Route::delete('/emdfhr/{id}', [EmdfhrController::class, 'delete']);
+Route::get('/emdfhr/editing/{id}', [EmdfhrController::class, 'redirectEdit'])->name('edit');
+Route::post('/emdfhr/select', [EmdfhrController::class, 'sinchung']);
+Route::post('/emdfhr/cls', [EmdfhrController::class, 'cls']);
+Route::post('/emdfhr/state', [EmdfhrController::class, 'state']);
